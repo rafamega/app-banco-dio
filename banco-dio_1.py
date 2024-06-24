@@ -1,4 +1,5 @@
-# Um programa simples de banco que fornece ao usuário 3 opções: depositar, sacar ou ver o extrato;
+# Primeiro passo do Projeto do Banco Dio
+# O programa fornece ao usuário 3 opções: depositar, sacar ou ver o extrato;
 
 MENU = '''
 [d] Depositar
