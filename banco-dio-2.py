@@ -207,57 +207,52 @@ def exibir_extrato(conta):
 
 
 # *** Loop Principal do Programa ***
-cliente_atual = None
-conta_atual = None
+def main():
+    cliente_atual = None
+    conta_atual = None
 
-while True:
-    operacao = input(menu).lower()
+    while True:
+        operacao = input(menu).lower()
 
-    # Verifica se o usuário selecionou uma operação que exige um cliente
-    if operacao in ["d", "s", "e", "a"]:
-        if not cliente_atual:
-            print("Nenhum cliente selecionado.")
-            continue
+        # Verifica se o usuário selecionou uma operação que exige um cliente
+        if operacao in ["d", "s", "e", "a"]:
+            if not cliente_atual:
+                print("Nenhum cliente selecionado.")
+                continue
 
-    # Verifica se o usuário selecionou uma operação que exige uma conta
-    if operacao in ["d", "s", "e"]:
-        if not conta_atual:
-            print("Nenhuma conta selecionada")
-            continue
+        # Verifica se o usuário selecionou uma operação que exige uma conta
+        if operacao in ["d", "s", "e"]:
+            if not conta_atual:
+                print("Nenhuma conta selecionada")
+                continue
 
-    match operacao:
-        # CADASTRAR CLIENTE
-        case "c":
-            cadastrar_usuario(clientes)
-            cliente_atual = None  # Reseta o cliente atual após cadastrar um novo cliente
-            conta_atual = None
-        case "a":
-            if cliente_atual:
-                abrir_conta(cliente_atual)
-        # DEPÓSITO
-        case "d":
-            if conta_atual:
-                depositar(conta_atual)
-        # SAQUE
-        case "s":
-            if conta_atual:
-                sacar(conta_atual)
-        # EXTRATO
-        case "e":
-            if conta_atual:
-                exibir_extrato(conta_atual)
-        # MOSTRAR CLIENTES
-        case "m":
-            mostrar_clientes(clientes)
-        # SELECIONA CLIENTE
-        case "n":
-            cliente_atual = selecionar_cliente(clientes)
-        case "o":
-        # SELECIONA CONTA
-            if cliente_atual:
-                conta_atual = selecionar_conta(cliente_atual)
-        # SAIR
-        case "x":
-            break
-        case _:
-            print("Operação inválida! Selecione uma das opções.")
+        match operacao:
+            case "c":
+                cadastrar_usuario(clientes)
+                cliente_atual = None  # Reseta o cliente atual após cadastrar um novo cliente
+                conta_atual = None
+            case "a":
+                if cliente_atual:
+                    abrir_conta(cliente_atual)
+            case "d":
+                if conta_atual:
+                    depositar(conta_atual)
+            case "s":
+                if conta_atual:
+                    sacar(conta_atual)
+            case "e":
+                if conta_atual:
+                    exibir_extrato(conta_atual)
+            case "m":
+                mostrar_clientes(clientes)
+            case "n":
+                cliente_atual = selecionar_cliente(clientes)
+            case "o":
+                if cliente_atual:
+                    conta_atual = selecionar_conta(cliente_atual)
+            case "x":
+                break
+            case _:
+                print("Operação inválida! Selecione uma das opções.")
+
+main()
